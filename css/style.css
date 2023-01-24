@@ -45,7 +45,10 @@ main {
 }
 
 .inside-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90%;
     height: 95%;
-    background-color:#13005A;
+    background-color:#7D0633;
 }

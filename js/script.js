@@ -29,7 +29,29 @@ function addComponent() {
     // Assign "inside-component" class to new div element
     insideComponent.classList.add("inside-component");
 
-    // Print new div element "insideComponent" inside the new component
+    // Create a button to open the modal
+    let selectBtn = document.createElement("button");
+    selectBtn.innerHTML = "Select Images Folder";
+    selectBtn.classList.add("btn", "btn-primary");
+    
+    selectBtn.addEventListener("click", function() {
+        let folderInput = document.createElement("input");
+        folderInput.type = "file";
+        folderInput.setAttribute("webkitdirectory", "");
+        folderInput.setAttribute("mozdirectory", "");
+        folderInput.addEventListener("change", function(event) {
+          let selectedFolder = event.target.files;
+          // Do something with the selected folder, such as scan for images
+        });
+        folderInput.style.display = "none";
+        document.body.appendChild(folderInput);
+        folderInput.click();
+      });
+
+    // Append the button to the inside component
+    insideComponent.appendChild(selectBtn);
+
+    // Append new div element "insideComponent" inside the new component
     newComponent.appendChild(insideComponent);
 
     // Select element with "main" class and add new component
