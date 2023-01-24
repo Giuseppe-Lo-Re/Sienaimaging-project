@@ -31,20 +31,32 @@ function addComponent() {
 
     // Create a button to open the modal
     let selectBtn = document.createElement("button");
-    selectBtn.innerHTML = "Select Images Folder";
+    selectBtn.innerHTML = "Images Folder";
     selectBtn.classList.add("btn", "btn-primary");
     
+    // Create ad Event Listener on button
     selectBtn.addEventListener("click", function() {
+
+        // Create a new input element to upload images folder
         let folderInput = document.createElement("input");
         folderInput.type = "file";
         folderInput.setAttribute("webkitdirectory", "");
         folderInput.setAttribute("mozdirectory", "");
+
+        // Create ad Event Listener after folder selection
         folderInput.addEventListener("change", function(event) {
+
           let selectedFolder = event.target.files;
           // Do something with the selected folder, such as scan for images
         });
+
+        // Hide folder input
         folderInput.style.display = "none";
+
+        // Append folder input to body
         document.body.appendChild(folderInput);
+
+        // Make the folder input clickable
         folderInput.click();
       });
 
