@@ -1,38 +1,80 @@
 // Define counter component to 0
 let componentCount =  0;
 
-//  Assign a "click" event on addButton
+
+// -------------------- "ADD" BUTTON LOGIC -------------------- //
+
+//  Select button with "addButton" class and  assign a "click" event
 document.querySelector(".addButton").addEventListener("click", function() {
     
     // Increase componentCount value by one
     componentCount++;
 
     // Call addComponent function
-    addAndFitComponents();
+    addComponent();
 });
 
 // Add a new component
-function addAndFitComponents() {
+function addComponent() {
 
-    // Create a new div
+    // Create a new div element
     let newComponent = document.createElement("div");
 
     // Assign "component" class to new component
     newComponent.classList.add("component");
     
-    // Add new component in the main
+    // Select element with "main" class and add new component
     document.querySelector(".main").appendChild(newComponent);
 
-    let allComponents = 
+    // Select all printed components
+    let allComponents = document.querySelectorAll('.component');
 
-        // Select all printed components
-        document.querySelectorAll('.component');
-
-        // For each printed components sets components width on base those presents
-        allComponents.forEach(function(component) {
-        component.style.width = (100 / componentCount) + "%";
-    });
+    // Call fitComponents() function
+    fitComponents(allComponents)
 
     // Set new component width on base those components present 
     newComponent.style.width = (100 / componentCount) + "%";
+}
+
+// -------------------- "REMOVE" BUTTON LOGIC -------------------- //
+
+//  Assign a "click" event on addButton
+document.querySelector(".removeButton").addEventListener("click", function() {
+    
+    // Decrease componentCount value by one
+    componentCount--;
+
+    // Call removeComponent function
+    removeComponent();
+});
+
+function removeComponent() {
+
+    // Select last component from main
+    let lastComponent = 
+
+    // Select last component printed inside element with "main" class
+    document.querySelector('.main').lastChild;
+
+    // Remove last component
+    lastComponent.remove();
+
+    // Select all printed components
+    let allComponents = document.querySelectorAll('.component');
+
+    // Call fitComponents() function
+    fitComponents(allComponents)
+}
+
+
+// -------------------- UTILITY FUNCTIONS -------------------- //
+
+function fitComponents(allComponents) {
+
+    // For each printed components set components width on base those presents
+    allComponents.forEach(function(component) {
+
+        // Create a style inline width string calculating  100% width / number components + "%"   
+        component.style.width = (100 / componentCount) + "%";
+});
 }
