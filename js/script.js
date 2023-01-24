@@ -22,7 +22,16 @@ function addComponent() {
 
     // Assign "component" class to new component
     newComponent.classList.add("component");
-    
+
+    // Create a new div element
+    let insideComponent = document.createElement("div");
+
+    // Assign "inside-component" class to new div element
+    insideComponent.classList.add("inside-component");
+
+    // Print new div element "insideComponent" inside the new component
+    newComponent.appendChild(insideComponent);
+
     // Select element with "main" class and add new component
     document.querySelector(".main").appendChild(newComponent);
 
@@ -48,6 +57,7 @@ document.querySelector(".removeButton").addEventListener("click", function() {
     removeComponent();
 });
 
+// Remove last component
 function removeComponent() {
 
     // Select last component from main
@@ -65,7 +75,6 @@ function removeComponent() {
     // Call fitComponents() function
     fitComponents(allComponents)
 }
-
 
 // -------------------- UTILITY FUNCTIONS -------------------- //
 

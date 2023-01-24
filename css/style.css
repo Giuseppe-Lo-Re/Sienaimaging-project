@@ -36,7 +36,16 @@ main {
 }
 
 .component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #03C988;
     height: 95vh;
     border: 0.4em solid #1C82AD;
+}
+
+.inside-component {
+    width: 90%;
+    height: 95%;
+    background-color:#13005A;
 }
