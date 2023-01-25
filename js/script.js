@@ -105,11 +105,8 @@ document.querySelector(".removeButton").addEventListener("click", function() {
 // Remove last component
 function removeComponent() {
 
-    // Select last component from main
-    let lastComponent = 
-
     // Select last component printed inside element with "main" class
-    document.querySelector('.main').lastChild;
+    let lastComponent = document.querySelector('.main').lastChild;
 
     // Remove last component
     lastComponent.remove();
@@ -138,9 +135,11 @@ function renderImages(images, target, insideComponent) {
     // Remove button after click
     target.parentNode.removeChild(target);
 
-    // Crea un elemento div con la classe slidecontainer
-    const slidecontainer = document.createElement("div");
-    slidecontainer.classList.add("slidecontainer");
+    // Create a new div element
+    const slidercontainer = document.createElement("div");
+
+    // Add "slider-container" class
+    slidercontainer.classList.add("slidercontainer");
     
     // Crea un elemento input con un tipo range, min, max e value
     var slider = document.createElement("input");
@@ -151,10 +150,28 @@ function renderImages(images, target, insideComponent) {
     slider.setAttribute("class", "slider");
 
     // Aggiunge l'elemento input all'interno del div slidecontainer
-    slidecontainer.appendChild(slider);
+    slidercontainer.appendChild(slider);
 
-    // Aggiunge l'elemento dello slider all'interno del componente inside-component
-    insideComponent.appendChild(slidecontainer);
+    // Create a new div element
+    const imageAndSliderContainer = document.createElement("div");
+
+    // Add "imageandslider-container" class
+    imageAndSliderContainer.classList.add("imageandslider-container");
+
+    // Append imageAndSliderContainer inside component
+    insideComponent.appendChild(imageAndSliderContainer);
+
+    // Append slidercontainer inside imageAndSliderContainer
+    imageAndSliderContainer.appendChild(slidercontainer);
+
+    // Create image container
+    let imgContainer = document.createElement("div");
+
+    // Add class to image container
+    imgContainer.classList.add("img-container");
+    
+    // Append image container inside component
+    imageAndSliderContainer.appendChild(imgContainer);
 
     // For loop to append images in the component
     for (let i = 0; i < images.length; i++) {
@@ -173,7 +190,7 @@ function renderImages(images, target, insideComponent) {
         reader.readAsDataURL(images[i]);
 
         // Append created image to element parent insideComponent
-        insideComponent.appendChild(img);
+        imgContainer.appendChild(img);
     }
 
     // Select slider input
@@ -201,7 +218,6 @@ function renderImages(images, target, insideComponent) {
             // Add class "active" -> image invisible
             const element = img[i].classList.add("disable");  
         }
-        
     }
 
     // Set "i" value
