@@ -52,3 +52,11 @@ main {
     height: 95%;
     background-color:#0C7B93;
 }
+
+.active {
+    display: inline-block;
+}
+
+.disable {
+    display: none;
+}
