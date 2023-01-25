@@ -85,9 +85,6 @@ function addComponent() {
 
     // Call fitComponents() function
     fitComponents(allComponents)
-
-    // Set new component width on base those components present 
-    newComponent.style.width = (100 / componentCount) + "%";
 }
 
 // -------------------- "REMOVE" BUTTON LOGIC -------------------- //
@@ -129,7 +126,7 @@ function fitComponents(allComponents) {
         component.style.width = (100 / componentCount) + "%";
 });
 }
-// basic upload without slide
+
 function renderImages(images, target, insideComponent) {
 
     // Remove button after click
@@ -176,6 +173,7 @@ function renderImages(images, target, insideComponent) {
     // For loop to append images in the component
     for (let i = 0; i < images.length; i++) {
 
+        
         // // Create img element
         let img = document.createElement('img');
 
@@ -183,12 +181,13 @@ function renderImages(images, target, insideComponent) {
         // when the file is uploaded, the "src" property of the image object (img) is set to the data of the uploaded file      
         let reader = new FileReader();
         reader.onload = function(e) {
+            console.log(e);
             img.src = e.target.result;
         }
-
+        
         // Read the data of the uploaded file
         reader.readAsDataURL(images[i]);
-
+        
         // Append created image to element parent insideComponent
         imgContainer.appendChild(img);
     }
@@ -200,7 +199,7 @@ function renderImages(images, target, insideComponent) {
     const img = document.querySelectorAll("img");
 
     // Set slider parameters
-    slider.min = 0;
+    slider.min = 1;
     slider.max = img.length - 1;
     slider.value = 0;
 
@@ -232,6 +231,7 @@ function renderImages(images, target, insideComponent) {
 
         // Assign "i" variable when the event is triggered
         i = event.target.value;
+        console.log(i);
 
         // Remove class "disable" and add class "active" to image triggered the event -> next image visible
         img[event.target.value].classList.remove("disable");
