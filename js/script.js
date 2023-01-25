@@ -29,6 +29,8 @@ function addComponent() {
     // Assign "inside-component" class to new div element
     insideComponent.classList.add("inside-component");
 
+    // ---------- FOLDER INPUT BUTTON ---------- //
+
     // Create a button to open the modal
     let selectBtn = document.createElement("button");
     selectBtn.innerHTML = "Images Folder";
@@ -46,8 +48,17 @@ function addComponent() {
         // Create ad Event Listener after folder selection
         folderInput.addEventListener("change", function(event) {
 
-          let selectedFolder = event.target.files;
-          // Do something with the selected folder, such as scan for images
+        // Set variable selectedFolder to the files object returned by the event(folder selected files) 
+        let selectedFolder = event.target.files;
+        
+        // Call renderImages function
+        renderImages(selectedFolder);
+
+        // Select element with ".inside-component" class
+        let insideContainer = document.querySelector('.inside-component');
+
+        // Remove button
+        insideContainer.removeChild(selectBtn);
         });
 
         // Hide folder input
@@ -120,4 +131,61 @@ function fitComponents(allComponents) {
         // Create a style inline width string calculating  100% width / number components + "%"   
         component.style.width = (100 / componentCount) + "%";
 });
+}
+
+function renderImages(images) {
+
+    // Select element with ".inside-component" class
+    let insideComponent = document.querySelector('.inside-component');
+
+    // Create a new carousel and append inside container
+    let carousel = document.createElement('div');
+    carousel.classList.add('carousel', 'slide');
+    carousel.setAttribute('data-ride', 'carousel');
+    insideComponent.appendChild(carousel);
+
+    // Create the carousel inner element
+    let carouselInner = document.createElement('div');
+    carouselInner.classList.add('carousel-inner');
+    carousel.appendChild(carouselInner);
+
+    // For loop to add images inside to the carousel
+    for (let i = 0; i < images.length; i++) {
+        
+        let carouselItem = document.createElement('div');
+        carouselItem.classList.add('carousel-item');
+        if (i === 0) {
+            carouselItem.classList.add('active');
+        }
+        let img = document.createElement('img');
+
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            img.src = e.target.result;
+        }
+        reader.readAsDataURL(images[i]);
+
+        // Append image inside component
+        insideComponent.appendChild(img);
+
+        // Append carousel item in the carousel
+        carouselInner.appendChild(carouselItem);
+    }
+    
+    
+    // For loop to print image inside component
+    // for (let i = 0; i < images.length; i++) {
+
+    //     // Create new img element
+    //     let img = document.createElement('img');
+
+    //     let reader = new FileReader();
+    //     reader.onload = function(e) {
+    //         img.src = e.target.result;
+    //     }
+    //     reader.readAsDataURL(images[i]);
+
+    //     // Append image inside component
+    //     insideComponent.appendChild(img);
+    // }
 }
