@@ -45,18 +45,21 @@ function addComponent() {
         folderInput.setAttribute("webkitdirectory", "");
         folderInput.setAttribute("mozdirectory", "");
 
+        // Assign the target variable to the element where the event was raised
         let target = event.target;
+
+        // Assign the insideComponent variable to the "target" parent element 
         let insideComponent = target.parentElement;
 
         // Create ad Event Listener after folder selection
         folderInput.addEventListener("change", function(event) {
             
-        // Set variable selectedFolder to the files object returned by the event(folder selected files) 
-        let selectedFolder = event.target.files;
-        
-        // Call renderImages function
-        renderImages(selectedFolder, target, insideComponent);
-    });
+            // Set variable selectedFolder to the files object returned by the event(folder selected files) 
+            let selectedFolder = event.target.files;
+            
+            // Call renderImages function
+            renderImages(selectedFolder, target, insideComponent);
+        });
 
         // Hide folder input
         folderInput.style.display = "none";
@@ -132,24 +135,90 @@ function fitComponents(allComponents) {
 // basic upload without slide
 function renderImages(images, target, insideComponent) {
 
+    // Remove button after click
     target.parentNode.removeChild(target);
+
+    // Crea un elemento div con la classe slidecontainer
+    const slidecontainer = document.createElement("div");
+    slidecontainer.classList.add("slidecontainer");
     
+    // Crea un elemento input con un tipo range, min, max e value
+    var slider = document.createElement("input");
+    slider.setAttribute("type", "range");
+    slider.setAttribute("min", "1");
+    slider.setAttribute("max", "100");
+    slider.setAttribute("value", "0");
+    slider.setAttribute("class", "slider");
+
+    // Aggiunge l'elemento input all'interno del div slidecontainer
+    slidecontainer.appendChild(slider);
+
+    // Aggiunge l'elemento dello slider all'interno del componente inside-component
+    insideComponent.appendChild(slidecontainer);
+
     // For loop to append images in the component
     for (let i = 0; i < images.length; i++) {
 
-        // Create img element
+        // // Create img element
         let img = document.createElement('img');
-        if(i == 0) {
-            img.classList.add('active')
-        } else {
-            img.classList.add('disable')
-        }
+
         // Define img src
+        // when the file is uploaded, the "src" property of the image object (img) is set to the data of the uploaded file      
         let reader = new FileReader();
         reader.onload = function(e) {
             img.src = e.target.result;
         }
+
+        // Read the data of the uploaded file
         reader.readAsDataURL(images[i]);
+
+        // Append created image to element parent insideComponent
         insideComponent.appendChild(img);
     }
+
+    // Select slider input
+    slider = document.querySelector("input");
+
+    // Select images
+    const img = document.querySelectorAll("img");
+
+    // Set slider parameters
+    slider.min = 0;
+    slider.max = img.length - 1;
+    slider.value = 0;
+
+    // For loop to iterate every image
+    for (let i = 0; i < img.length; i++) {
+    
+        // If it's the first image selected
+        if(i == 0) {
+
+            // Add class "active" -> image visible
+            const element = img[i].classList.add("active");  
+        }
+        else{
+
+            // Add class "active" -> image invisible
+            const element = img[i].classList.add("disable");  
+        }
+        
+    }
+
+    // Set "i" value
+    let i = 0;
+
+    // Assign an event listener to slider
+    slider.addEventListener("change", function(event){
+        
+        // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
+        img[i].classList.remove("active");
+        img[i].classList.add("disable");
+
+        // Assign "i" variable when the event is triggered
+        i = event.target.value;
+
+        // Remove class "disable" and add class "active" to image triggered the event -> next image visible
+        img[event.target.value].classList.remove("disable");
+        img[event.target.value].classList.add("active");
+    });
 }

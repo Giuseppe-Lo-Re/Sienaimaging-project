@@ -51,6 +51,12 @@ main {
     width: 90%;
     height: 95%;
     background-color:#0C7B93;
+    overflow: hidden;
+}
+
+.inside-component img {
+    width: auto;
+    height: auto;
 }
 
 .active {
