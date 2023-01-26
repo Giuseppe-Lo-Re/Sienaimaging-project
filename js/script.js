@@ -56,9 +56,17 @@ function addComponent() {
         folderInput.type = "file";
         folderInput.setAttribute("webkitdirectory", "");
         folderInput.setAttribute("mozdirectory", "");
+		folderInput.setAttribute("accept", ".jpg, .jpeg, .png");
+		
+		
+		
+		
 
         // Assign the target variable to the element where the event was raised
         let target = event.target;
+		
+		//let caller = target.parentElement.getAttribute("id") ; 
+		//folderInput.setAttribute("data", caller); 
 
         // Assign the insideComponent variable to the "target" parent element 
         let insideComponent = target.parentElement;
@@ -153,7 +161,7 @@ function fitComponents(allComponents) {
 });
 }
 
-function renderImages(images, target, insideComponent) {
+function renderImages(files, target, insideComponent) {
     
     // Remove button after click upload images
     target.parentNode.removeChild(target);
@@ -178,12 +186,15 @@ function renderImages(images, target, insideComponent) {
     // Add slider container inside component
     insideComponent.appendChild(slidercontainer);
 
-    // For loop to append images in the component
-    for (let i = 0; i < images.length - 1; i++) {
+    // For loop to append images files in the component
+    for (let i = 0; i < files.length ; i++) {
 
+
+		if (files[i].name.toUpperCase().includes(".JPEG")){
         // // Create img element
         let img = document.createElement('img');
-
+		// Set an univoque ID for the img
+		img.setAttribute("id", insideComponent.getAttribute("id")+'_'+i); 
         // // Add "img-fluid" class
         img.classList.add("img-fluid");
 
@@ -195,19 +206,20 @@ function renderImages(images, target, insideComponent) {
         }
         
         // Read the data of the uploaded file
-        reader.readAsDataURL(images[i]);
+        reader.readAsDataURL(files[i]);
 
 
         // Append created image to element parent insideComponent
-        document.getElementById(`${componentCount}`).appendChild(img);
+        insideComponent.appendChild(img);
+		}
     }
     console.log("insideComponent",insideComponent);
 
     // Select slider input
-    slider = document.querySelector("input");
+    slider = insideComponent.querySelector("input");
 
     // Select images
-    const img = document.querySelectorAll("img");
+    const img = insideComponent.querySelectorAll("img");
 
     // Set slider parameters
     slider.min = 0;
@@ -215,7 +227,7 @@ function renderImages(images, target, insideComponent) {
     slider.value = 0;
 
     // For loop to iterate every image
-    for (let i = 0; i < img.length -1; i++) {
+    for (let i = 0; i < img.length ; i++) {
     
         console.log("img[i]", img[i]);
         // If it's the first image selected
@@ -232,23 +244,25 @@ function renderImages(images, target, insideComponent) {
     }
     
     // Set "i" value
-    let i = img.length -1;
+    let index = 0;
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
         console.log(" inside EL slider", event);
         // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
-        img[i].classList.remove("active");
+        img[index].classList.remove("active");
         
-        img[i].classList.add("disable");
+        img[index].classList.add("disable");
   
 
         // Assign "i" variable when the event is triggered
-        i = event.target.value;
+        index = event.target.value;
 
         // Remove class "disable" and add class "active" to image triggered the event -> next image visible
-        img[event.target.value].classList.remove("disable");
-        img[event.target.value].classList.add("active");
+        img[index].classList.remove("disable");
+        img[index].classList.add("active");
     
     });
+	
+	slider.focus(); 
 }

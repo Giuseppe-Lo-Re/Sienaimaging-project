@@ -88,7 +88,7 @@ main i {
 .slider-container {
     padding-bottom: 1.4rem;
     position: absolute;
-        top: 15%;
+        top: 5%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
