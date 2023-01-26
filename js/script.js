@@ -4,6 +4,7 @@ let componentCount =  0;
 // Set remove button disable
 document.querySelector(".removeButton").disabled = true;
 
+
 // -------------------- "ADD" BUTTON LOGIC -------------------- //
 
 //  Select button with "addButton" class and  assign a "click" event
@@ -51,11 +52,10 @@ document.querySelector(".removeButton").addEventListener("click", function() {
 });
 
 
-
 // -------------------- ADD COMPONENT FUNCTION -------------------- //
+
 function addComponent() {
 
-   
    	// Create a new div element
     let Component = document.createElement("div");
 	
@@ -66,11 +66,7 @@ function addComponent() {
     let selectBtn = document.createElement("button");
 	
    
-   
-   
-
     // ---------- FOLDER INPUT BUTTON LOGIC---------- //
-
 
     selectBtn.innerHTML = `📂`;
     selectBtn.classList.add("btn", "btn-outline-warning");
@@ -85,10 +81,8 @@ function addComponent() {
         folderInput.setAttribute("mozdirectory", "");
 		folderInput.setAttribute("accept", ".jpg, .jpeg, .png");
 				
-
         // Assign the target variable to the element where the event was raised
         let target = event.target;
-		
        
         // Create ad Event Listener after folder selection
         folderInput.addEventListener("change", function(event) {
@@ -111,7 +105,7 @@ function addComponent() {
 
         // Select directory on click 
         folderInput.click();
-      });
+    });
 	  
 	  
 	// ---------- INSIDE COMPONENT LOGIC---------- //  
@@ -126,31 +120,25 @@ function addComponent() {
     insideComponent.appendChild(selectBtn);
 	
 
-
 	// ---------- COMPONENT LOGIC ---------- //
-
-
 
     // Assign "component" class to new component
     Component.classList.add("component");
    
-
     // Append new div element "insideComponent" inside the new component
     Component.appendChild(insideComponent);
-
 
     // Select element with "main" class and add new component
     document.querySelector(".main").appendChild(Component); 
 
-	// ---------- GRAPHIC ADJUSTMENT ---------- //
+
+	// ---------- GRAPHIC SETTING ---------- //
 
     // Select all printed components
     let allComponents = document.querySelectorAll('.component');
 
     // Call fitComponents() function
     fitComponents(allComponents)
-	
-	
 }
 
 
@@ -170,7 +158,7 @@ function removeComponent() {
     fitComponents(allComponents)
 }
 
-// -------------------- UTILITY FUNCTIONS -------------------- //
+// -------------------- FITCOMPONENTS FUNCTION -------------------- //
 
 function fitComponents(allComponents) {
 
@@ -181,6 +169,9 @@ function fitComponents(allComponents) {
         component.style.width = (100 / componentCount) + "%";
 });
 }
+
+
+// -------------------- RENDERIMAGES FUNCTION -------------------- //
 
 function renderImages(files, target, insideComponent) {
     
@@ -210,17 +201,17 @@ function renderImages(files, target, insideComponent) {
     // For loop to append images files in the component
     for (let i = 0; i < files.length ; i++) {
 
-
-		
         // // Create img element
         let img = document.createElement('img');
-		// Set an univoque ID for the img
-		img.setAttribute("id", insideComponent.getAttribute("id")+'_'+i); 
-        // // Add "img-fluid" class
+
+		// Set an univoque ID for the img, composed from inside component id iteration + image id iteration
+		img.setAttribute("id", insideComponent.getAttribute("id") + '_' + i); 
+
+        // Add "img-fluid" class
         img.classList.add("img-fluid");
 
         // Define img src
-        // when the file is uploaded, the "src" property of the image object (img) is set to the data of the uploaded file      
+        // when the file is uploaded, the img.src is set to the data of the uploaded file      
         let reader = new FileReader();
         reader.onload = function(e) {
             img.src = e.target.result;
@@ -229,12 +220,9 @@ function renderImages(files, target, insideComponent) {
         // Read the data of the uploaded file
         reader.readAsDataURL(files[i]);
 
-
         // Append created image to element parent insideComponent
         insideComponent.appendChild(img);
-		
     }
-    console.log("insideComponent",insideComponent);
 
     // Select slider input
     slider = insideComponent.querySelector("input");
@@ -250,7 +238,6 @@ function renderImages(files, target, insideComponent) {
     // For loop to iterate every image
     for (let i = 0; i < img.length ; i++) {
     
-        console.log("img[i]", img[i]);
         // If it's the first image selected
         if(i == 0) {
 
@@ -269,21 +256,22 @@ function renderImages(files, target, insideComponent) {
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
-        console.log(" inside EL slider", event);
-        // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
+
+        // Remove class "active" and add class "disable" to image triggered the event 
+        // -> previous image invisible
         img[index].classList.remove("active");
-        
         img[index].classList.add("disable");
   
 
         // Assign "i" variable when the event is triggered
         index = event.target.value;
 
-        // Remove class "disable" and add class "active" to image triggered the event -> next image visible
+        // Remove class "disable" and add class "active" to image triggered the event 
+        // -> next image visible
         img[index].classList.remove("disable");
         img[index].classList.add("active");
-    
     });
 	
+    // Set focus on slider to use via keyboard arrows
 	slider.focus(); 
 }
