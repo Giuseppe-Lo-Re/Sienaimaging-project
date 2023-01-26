@@ -1,6 +1,8 @@
 // Define counter component to 0
 let componentCount =  0;
 
+// Set remove button disable
+document.querySelector(".removeButton").disabled = true;
 
 // -------------------- "ADD" BUTTON LOGIC -------------------- //
 
@@ -10,7 +12,15 @@ document.querySelector(".addButton").addEventListener("click", function() {
     // Increase componentCount value by one
     componentCount++;
 
-    document.querySelector(".removeButton").disabled = false;
+    // If main contains 10 components ( I decided to set it as limit)
+    if(componentCount == 10) {
+        
+        // Set add button disable
+        document.querySelector(".addButton").disabled = true;
+    } else {
+        // Set remove button disable
+        document.querySelector(".removeButton").disabled = false;
+    }
 
     // Call addComponent function
     addComponent();
@@ -35,7 +45,7 @@ function addComponent() {
 
     // Create a button to open the modal
     let selectBtn = document.createElement("button");
-    selectBtn.innerHTML = `<i class="fa-solid fa-file-arrow-up fa-2xl"></i>`;
+    selectBtn.innerHTML = `Folder`;
     selectBtn.classList.add("btn", "btn-outline-warning");
     
     // Create ad Event Listener on button
@@ -96,14 +106,19 @@ document.querySelector(".removeButton").addEventListener("click", function() {
     
     // Decrease componentCount value by one
     componentCount--;
-    console.log(componentCount);
 
     // Call removeComponent function
     removeComponent();
 
+    // If main not contains any components
     if(componentCount == 0) {
-        console.log("dentro if");
+        
+        // Set remove button disable
         document.querySelector(".removeButton").disabled = true;
+    } else {
+
+        // Set add button visible
+        document.querySelector(".addButton").disabled = false;
     }
 });
 
@@ -136,9 +151,10 @@ function fitComponents(allComponents) {
 }
 
 function renderImages(images, target, insideComponent) {
-
+    console.log(target);
     // Remove button after click upload images
     target.parentNode.removeChild(target);
+    
 
     // Create a new div element
     const slidercontainer = document.createElement("div");
@@ -159,7 +175,6 @@ function renderImages(images, target, insideComponent) {
 
     // Aggiunge l'elemento dello slider all'interno del componente inside-component
     insideComponent.appendChild(slidercontainer);
-
     // // Create a new div element
     // const imageAndSliderContainer = document.createElement("div");
 
@@ -182,7 +197,7 @@ function renderImages(images, target, insideComponent) {
     // imageAndSliderContainer.appendChild(imgContainer);
 
     // For loop to append images in the component
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < images.length - 1; i++) {
 
         // // Create img element
         let img = document.createElement('img');
@@ -194,13 +209,12 @@ function renderImages(images, target, insideComponent) {
         // when the file is uploaded, the "src" property of the image object (img) is set to the data of the uploaded file      
         let reader = new FileReader();
         reader.onload = function(e) {
-            // console.log(reader);
             img.src = e.target.result;
         }
         
         // Read the data of the uploaded file
         reader.readAsDataURL(images[i]);
-        
+
         // Append created image to element parent insideComponent
         insideComponent.appendChild(img);
     }
@@ -217,10 +231,10 @@ function renderImages(images, target, insideComponent) {
     slider.value = 0;
 
     // For loop to iterate every image
-    for (let i = 0; i < img.length; i++) {
+    for (let i = 0; i < img.length -1; i++) {
     
         // If it's the first image selected
-        if(i == 1) {
+        if(i == 0) {
 
             // Add class "active" -> image visible
             const element = img[i].classList.add("active");  
@@ -233,7 +247,7 @@ function renderImages(images, target, insideComponent) {
     }
     
     // Set "i" value
-    let i = 1;
+    let i = img.length -1;
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
@@ -245,7 +259,7 @@ function renderImages(images, target, insideComponent) {
 
         // Assign "i" variable when the event is triggered
         i = event.target.value;
-        // console.log(i);
+        
 
         // Remove class "disable" and add class "active" to image triggered the event -> next image visible
         img[event.target.value].classList.remove("disable");
