@@ -26,89 +26,6 @@ document.querySelector(".addButton").addEventListener("click", function() {
     addComponent();
 });
 
-// Add a new component
-function addComponent() {
-
-    // Create a new div element
-    let newComponent = document.createElement("div");
-
-    // Assign "component" class to new component
-    newComponent.classList.add("component");
-
-    // Create a new div element
-    let insideComponent = document.createElement("div");
-
-    // Assign "inside-component" class to new div element
-    insideComponent.classList.add("inside-component");
-
-    // ---------- FOLDER INPUT BUTTON ---------- //
-
-    // Create a button to open the modal
-    let selectBtn = document.createElement("button");
-    selectBtn.innerHTML = `📂`;
-    selectBtn.classList.add("btn", "btn-outline-warning");
-    
-    // Create ad Event Listener on button
-    selectBtn.addEventListener("click", event => {
-
-        // Create a new input element to upload images folder
-        let folderInput = document.createElement("input");
-        folderInput.type = "file";
-        folderInput.setAttribute("webkitdirectory", "");
-        folderInput.setAttribute("mozdirectory", "");
-		folderInput.setAttribute("accept", ".jpg, .jpeg, .png");
-		
-		
-		
-		
-
-        // Assign the target variable to the element where the event was raised
-        let target = event.target;
-		
-		//let caller = target.parentElement.getAttribute("id") ; 
-		//folderInput.setAttribute("data", caller); 
-
-        // Assign the insideComponent variable to the "target" parent element 
-        let insideComponent = target.parentElement;
-
-        // Create ad Event Listener after folder selection
-        folderInput.addEventListener("change", function(event) {
-            
-            // Set variable selectedFolder to the files object returned by the event(folder selected files) 
-            let selectedFolder = event.target.files;
-            
-            // Call renderImages function
-            renderImages(selectedFolder, target, insideComponent);
-        });
-
-        // Hide folder input
-        folderInput.style.display = "none";
-
-        // Append folder input to body
-        document.body.appendChild(folderInput);
-
-        // Make the folder input clickable
-        folderInput.click();
-      });
-
-    // Append the button to the inside component
-    insideComponent.appendChild(selectBtn);
-
-    // Set Id on insideComponent
-    insideComponent.setAttribute("id", `${componentCount}`)
-
-    // Append new div element "insideComponent" inside the new component
-    newComponent.appendChild(insideComponent);
-
-    // Select element with "main" class and add new component
-    document.querySelector(".main").appendChild(newComponent);
-
-    // Select all printed components
-    let allComponents = document.querySelectorAll('.component');
-
-    // Call fitComponents() function
-    fitComponents(allComponents)
-}
 
 // -------------------- "REMOVE" BUTTON LOGIC -------------------- //
 
@@ -133,7 +50,111 @@ document.querySelector(".removeButton").addEventListener("click", function() {
     }
 });
 
-// Remove last component
+
+
+// -------------------- ADD COMPONENT FUNCTION -------------------- //
+function addComponent() {
+
+   
+   	// Create a new div element
+    let Component = document.createElement("div");
+	
+	// Create a new div element
+    let insideComponent = document.createElement("div");
+	
+	// Create a button to open the modal
+    let selectBtn = document.createElement("button");
+	
+   
+   
+   
+
+    // ---------- FOLDER INPUT BUTTON LOGIC---------- //
+
+
+    selectBtn.innerHTML = `📂`;
+    selectBtn.classList.add("btn", "btn-outline-warning");
+    
+    // Create ad Event Listener on button
+    selectBtn.addEventListener("click", event => {
+
+        // Create a new input element to upload images folder
+        let folderInput = document.createElement("input");
+        folderInput.type = "file";
+        folderInput.setAttribute("webkitdirectory", "");
+        folderInput.setAttribute("mozdirectory", "");
+		folderInput.setAttribute("accept", ".jpg, .jpeg, .png");
+				
+
+        // Assign the target variable to the element where the event was raised
+        let target = event.target;
+		
+       
+        // Create ad Event Listener after folder selection
+        folderInput.addEventListener("change", function(event) {
+            
+            // Set variable selectedFiles to the files object returned by the event(folder selected files) 
+            let selectedFiles = event.target.files;
+			
+			//Filters files with type "image"
+			selectedFiles = [...selectedFiles].filter( s => s.type.includes("image") )
+            
+            // Call renderImages function
+            renderImages(selectedFiles, target, insideComponent);
+        });
+
+        // Hide folder input
+        folderInput.style.display = "none";
+
+        // Append folder input to body
+        document.body.appendChild(folderInput);
+
+        // Select directory on click 
+        folderInput.click();
+      });
+	  
+	  
+	// ---------- INSIDE COMPONENT LOGIC---------- //  
+	
+	// Assign "inside-component" class to new div element
+    insideComponent.classList.add("inside-component");  
+	
+	// Set Id on insideComponent
+    insideComponent.setAttribute("id", `${componentCount}`)
+
+    // Append the button to the inside component
+    insideComponent.appendChild(selectBtn);
+	
+
+
+	// ---------- COMPONENT LOGIC ---------- //
+
+
+
+    // Assign "component" class to new component
+    Component.classList.add("component");
+   
+
+    // Append new div element "insideComponent" inside the new component
+    Component.appendChild(insideComponent);
+
+
+    // Select element with "main" class and add new component
+    document.querySelector(".main").appendChild(Component); 
+
+	// ---------- GRAPHIC ADJUSTMENT ---------- //
+
+    // Select all printed components
+    let allComponents = document.querySelectorAll('.component');
+
+    // Call fitComponents() function
+    fitComponents(allComponents)
+	
+	
+}
+
+
+// -------------------- REMOVE COMPONENT FUNCTION -------------------- //
 function removeComponent() {
 
     // Select last component printed inside element with "main" class
@@ -190,7 +211,7 @@ function renderImages(files, target, insideComponent) {
     for (let i = 0; i < files.length ; i++) {
 
 
-		if (files[i].name.toUpperCase().includes(".JPEG")){
+		
         // // Create img element
         let img = document.createElement('img');
 		// Set an univoque ID for the img
@@ -211,7 +232,7 @@ function renderImages(files, target, insideComponent) {
 
         // Append created image to element parent insideComponent
         insideComponent.appendChild(img);
-		}
+		
     }
     console.log("insideComponent",insideComponent);
 
@@ -244,7 +265,7 @@ function renderImages(files, target, insideComponent) {
     }
     
     // Set "i" value
-    let index = 0;
+    let index = 0; //la prima volta img[0] è attiva
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
