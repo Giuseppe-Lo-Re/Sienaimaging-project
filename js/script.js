@@ -33,8 +33,8 @@ function addComponent() {
 
     // Create a button to open the modal
     let selectBtn = document.createElement("button");
-    selectBtn.innerHTML = "Images Folder";
-    selectBtn.classList.add("btn", "btn-primary");
+    selectBtn.innerHTML = `<i class="fa-solid fa-file-arrow-up fa-2xl"></i>`;
+    selectBtn.classList.add("btn", "btn-outline-primary");
     
     // Create ad Event Listener on button
     selectBtn.addEventListener("click", event => {
@@ -128,7 +128,7 @@ function fitComponents(allComponents) {
 }
 
 function renderImages(images, target, insideComponent) {
-
+    console.log(target);
     // Remove button after click upload images
     target.parentNode.removeChild(target);
 
@@ -136,7 +136,7 @@ function renderImages(images, target, insideComponent) {
     const slidercontainer = document.createElement("div");
 
     // Add "slider-container" class
-    slidercontainer.classList.add("slidercontainer");
+    slidercontainer.classList.add("slider-container");
     
     // Crea un elemento input con un tipo range, min, max e value
     let slider = document.createElement("input");
@@ -173,15 +173,17 @@ function renderImages(images, target, insideComponent) {
     // For loop to append images in the component
     for (let i = 0; i < images.length; i++) {
 
-
         // // Create img element
         let img = document.createElement('img');
+
+        // Add "img-fluid" class
+        img.classList.add("img-fluid");
 
         // Define img src
         // when the file is uploaded, the "src" property of the image object (img) is set to the data of the uploaded file      
         let reader = new FileReader();
         reader.onload = function(e) {
-            console.log(e);
+            // console.log(reader);
             img.src = e.target.result;
         }
         
@@ -218,20 +220,20 @@ function renderImages(images, target, insideComponent) {
             const element = img[i].classList.add("disable");  
         }
     }
-
+    
     // Set "i" value
     let i = 0;
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
-        
+        // console.log(event);
         // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
         img[i].classList.remove("active");
         img[i].classList.add("disable");
 
         // Assign "i" variable when the event is triggered
         i = event.target.value;
-        console.log(i);
+        // console.log(i);
 
         // Remove class "disable" and add class "active" to image triggered the event -> next image visible
         img[event.target.value].classList.remove("disable");

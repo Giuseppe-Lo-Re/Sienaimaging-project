@@ -37,12 +37,13 @@ header{
 main {
     background-color: #1C82AD;
     height: 95vh;
+    padding: 0;
 }
 
 .component {
     background-color: #00337C;
     height: 95vh;
-    border: 0.4em solid #1C82AD;
+    border: 0.1em solid #1C82AD;
     border-radius: 20px;
     text-align: center;
 }
@@ -57,12 +58,11 @@ main {
 }
 
 img {
-    border-radius: 20px;
+    object-fit: contain;
 }
 
 .imageandslider-container {
-    width: 95%;
-    height: 95%;
+    width: 100%;
 }
 
 .active {
@@ -73,6 +73,6 @@ img {
     display: none;
 }
 
-.slider {
-   
+.slider-container {
+    padding-bottom: 1.4rem;
 }
