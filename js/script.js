@@ -129,7 +129,7 @@ function fitComponents(allComponents) {
 
 function renderImages(images, target, insideComponent) {
 
-    // Remove button after click
+    // Remove button after click upload images
     target.parentNode.removeChild(target);
 
     // Create a new div element
@@ -139,9 +139,9 @@ function renderImages(images, target, insideComponent) {
     slidercontainer.classList.add("slidercontainer");
     
     // Crea un elemento input con un tipo range, min, max e value
-    var slider = document.createElement("input");
+    let slider = document.createElement("input");
     slider.setAttribute("type", "range");
-    slider.setAttribute("min", "1");
+    slider.setAttribute("min", "0");
     slider.setAttribute("max", "100");
     slider.setAttribute("value", "0");
     slider.setAttribute("class", "slider");
@@ -173,7 +173,7 @@ function renderImages(images, target, insideComponent) {
     // For loop to append images in the component
     for (let i = 0; i < images.length; i++) {
 
-        
+
         // // Create img element
         let img = document.createElement('img');
 
@@ -199,7 +199,7 @@ function renderImages(images, target, insideComponent) {
     const img = document.querySelectorAll("img");
 
     // Set slider parameters
-    slider.min = 1;
+    slider.min = 0;
     slider.max = img.length - 1;
     slider.value = 0;
 

@@ -8,7 +8,7 @@
 
 /* HEADER */
 header{
-    background-color: #00337C;
+    background-color: #13005A;
     height: 5vh;
     display: flex;
     padding-inline: 2em;
@@ -29,6 +29,10 @@ header{
     margin-left: 1em;
 }
 
+.btn-primary {
+    margin-inline: 0.5rem;
+}
+
 /* MAIN */
 main {
     background-color: #1C82AD;
@@ -36,10 +40,10 @@ main {
 }
 
 .component {
-
-    background-color: #03C988;
+    background-color: #00337C;
     height: 95vh;
     border: 0.4em solid #1C82AD;
+    border-radius: 20px;
     text-align: center;
 }
 
@@ -49,13 +53,12 @@ main {
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color:#0C7B93;
     object-fit: contain;
 }
 
-/* img {
-
-} */
+img {
+    border-radius: 20px;
+}
 
 .imageandslider-container {
     width: 95%;
@@ -71,6 +74,5 @@ main {
 }
 
 .slider {
-    padding: 2em;
-    width: 80%;
+   
 }
