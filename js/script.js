@@ -10,6 +10,8 @@ document.querySelector(".addButton").addEventListener("click", function() {
     // Increase componentCount value by one
     componentCount++;
 
+    document.querySelector(".removeButton").disabled = false;
+
     // Call addComponent function
     addComponent();
 });
@@ -94,9 +96,15 @@ document.querySelector(".removeButton").addEventListener("click", function() {
     
     // Decrease componentCount value by one
     componentCount--;
+    console.log(componentCount);
 
     // Call removeComponent function
     removeComponent();
+
+    if(componentCount == 0) {
+        console.log("dentro if");
+        document.querySelector(".removeButton").disabled = true;
+    }
 });
 
 // Remove last component
@@ -128,7 +136,7 @@ function fitComponents(allComponents) {
 }
 
 function renderImages(images, target, insideComponent) {
-    console.log(target);
+
     // Remove button after click upload images
     target.parentNode.removeChild(target);
 
@@ -149,26 +157,29 @@ function renderImages(images, target, insideComponent) {
     // Aggiunge l'elemento input all'interno del div slidecontainer
     slidercontainer.appendChild(slider);
 
-    // Create a new div element
-    const imageAndSliderContainer = document.createElement("div");
+    // Aggiunge l'elemento dello slider all'interno del componente inside-component
+    insideComponent.appendChild(slidercontainer);
 
-    // Add "imageandslider-container" class
-    imageAndSliderContainer.classList.add("imageandslider-container");
+    // // Create a new div element
+    // const imageAndSliderContainer = document.createElement("div");
 
-    // Append imageAndSliderContainer inside component
-    insideComponent.appendChild(imageAndSliderContainer);
+    // // Add "imageandslider-container" class
+    // imageAndSliderContainer.classList.add("imageandslider-container");
 
-    // Append slidercontainer inside imageAndSliderContainer
-    imageAndSliderContainer.appendChild(slidercontainer);
+    // // Append imageAndSliderContainer inside component
+    // insideComponent.appendChild(imageAndSliderContainer);
 
-    // Create image container
-    let imgContainer = document.createElement("div");
+    // // Append slidercontainer inside imageAndSliderContainer
+    // imageAndSliderContainer.appendChild(slidercontainer);
 
-    // Add class to image container
-    imgContainer.classList.add("img-container");
+    // // Create image container
+    // let imgContainer = document.createElement("div");
+
+    // // Add class to image container
+    // imgContainer.classList.add("img-container");
     
-    // Append image container inside component
-    imageAndSliderContainer.appendChild(imgContainer);
+    // // Append image container inside component
+    // imageAndSliderContainer.appendChild(imgContainer);
 
     // For loop to append images in the component
     for (let i = 0; i < images.length; i++) {
@@ -176,7 +187,7 @@ function renderImages(images, target, insideComponent) {
         // // Create img element
         let img = document.createElement('img');
 
-        // Add "img-fluid" class
+        // // Add "img-fluid" class
         img.classList.add("img-fluid");
 
         // Define img src
@@ -191,7 +202,7 @@ function renderImages(images, target, insideComponent) {
         reader.readAsDataURL(images[i]);
         
         // Append created image to element parent insideComponent
-        imgContainer.appendChild(img);
+        insideComponent.appendChild(img);
     }
 
     // Select slider input
@@ -209,12 +220,12 @@ function renderImages(images, target, insideComponent) {
     for (let i = 0; i < img.length; i++) {
     
         // If it's the first image selected
-        if(i == 0) {
+        if(i == 1) {
 
             // Add class "active" -> image visible
             const element = img[i].classList.add("active");  
         }
-        else{
+        else {
 
             // Add class "active" -> image invisible
             const element = img[i].classList.add("disable");  
@@ -222,14 +233,15 @@ function renderImages(images, target, insideComponent) {
     }
     
     // Set "i" value
-    let i = 0;
+    let i = 1;
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
-        // console.log(event);
+            
         // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
         img[i].classList.remove("active");
         img[i].classList.add("disable");
+  
 
         // Assign "i" variable when the event is triggered
         i = event.target.value;
@@ -238,5 +250,6 @@ function renderImages(images, target, insideComponent) {
         // Remove class "disable" and add class "active" to image triggered the event -> next image visible
         img[event.target.value].classList.remove("disable");
         img[event.target.value].classList.add("active");
+    
     });
 }
