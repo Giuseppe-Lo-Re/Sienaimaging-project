@@ -45,7 +45,7 @@ function addComponent() {
 
     // Create a button to open the modal
     let selectBtn = document.createElement("button");
-    selectBtn.innerHTML = `Folder`;
+    selectBtn.innerHTML = `📂`;
     selectBtn.classList.add("btn", "btn-outline-warning");
     
     // Create ad Event Listener on button
@@ -85,6 +85,9 @@ function addComponent() {
 
     // Append the button to the inside component
     insideComponent.appendChild(selectBtn);
+
+    // Set Id on insideComponent
+    insideComponent.setAttribute("id", `${componentCount}`)
 
     // Append new div element "insideComponent" inside the new component
     newComponent.appendChild(insideComponent);
@@ -151,11 +154,10 @@ function fitComponents(allComponents) {
 }
 
 function renderImages(images, target, insideComponent) {
-    console.log(target);
+    
     // Remove button after click upload images
     target.parentNode.removeChild(target);
     
-
     // Create a new div element
     const slidercontainer = document.createElement("div");
 
@@ -170,31 +172,11 @@ function renderImages(images, target, insideComponent) {
     slider.setAttribute("value", "0");
     slider.setAttribute("class", "slider");
 
-    // Aggiunge l'elemento input all'interno del div slidecontainer
+    // Add slider slider container
     slidercontainer.appendChild(slider);
 
-    // Aggiunge l'elemento dello slider all'interno del componente inside-component
+    // Add slider container inside component
     insideComponent.appendChild(slidercontainer);
-    // // Create a new div element
-    // const imageAndSliderContainer = document.createElement("div");
-
-    // // Add "imageandslider-container" class
-    // imageAndSliderContainer.classList.add("imageandslider-container");
-
-    // // Append imageAndSliderContainer inside component
-    // insideComponent.appendChild(imageAndSliderContainer);
-
-    // // Append slidercontainer inside imageAndSliderContainer
-    // imageAndSliderContainer.appendChild(slidercontainer);
-
-    // // Create image container
-    // let imgContainer = document.createElement("div");
-
-    // // Add class to image container
-    // imgContainer.classList.add("img-container");
-    
-    // // Append image container inside component
-    // imageAndSliderContainer.appendChild(imgContainer);
 
     // For loop to append images in the component
     for (let i = 0; i < images.length - 1; i++) {
@@ -215,9 +197,11 @@ function renderImages(images, target, insideComponent) {
         // Read the data of the uploaded file
         reader.readAsDataURL(images[i]);
 
+
         // Append created image to element parent insideComponent
-        insideComponent.appendChild(img);
+        document.getElementById(`${componentCount}`).appendChild(img);
     }
+    console.log("insideComponent",insideComponent);
 
     // Select slider input
     slider = document.querySelector("input");
@@ -233,6 +217,7 @@ function renderImages(images, target, insideComponent) {
     // For loop to iterate every image
     for (let i = 0; i < img.length -1; i++) {
     
+        console.log("img[i]", img[i]);
         // If it's the first image selected
         if(i == 0) {
 
@@ -251,15 +236,15 @@ function renderImages(images, target, insideComponent) {
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
-            
+        console.log(" inside EL slider", event);
         // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
         img[i].classList.remove("active");
+        
         img[i].classList.add("disable");
   
 
         // Assign "i" variable when the event is triggered
         i = event.target.value;
-        
 
         // Remove class "disable" and add class "active" to image triggered the event -> next image visible
         img[event.target.value].classList.remove("disable");
