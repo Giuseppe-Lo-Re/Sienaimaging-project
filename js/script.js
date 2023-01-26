@@ -34,7 +34,7 @@ function addComponent() {
     // Create a button to open the modal
     let selectBtn = document.createElement("button");
     selectBtn.innerHTML = `<i class="fa-solid fa-file-arrow-up fa-2xl"></i>`;
-    selectBtn.classList.add("btn", "btn-outline-primary");
+    selectBtn.classList.add("btn", "btn-outline-warning");
     
     // Create ad Event Listener on button
     selectBtn.addEventListener("click", event => {

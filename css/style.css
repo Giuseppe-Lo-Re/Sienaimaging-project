@@ -60,9 +60,13 @@ main {
 img {
     object-fit: contain;
 }
+main i {
+    color: #e05b53;
+}
 
 .imageandslider-container {
     width: 100%;
+    padding: 0.6rem;
 }
 
 .active {
