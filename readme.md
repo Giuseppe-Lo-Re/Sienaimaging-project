@@ -4,7 +4,7 @@
 The project consists in the development of a web app that allows the user to create different components on the page, within each of which it is possible to view images uploaded from their own device.
 ***
 ### Screenshots
-![1.On load](img/screenshots/1_%20On_load.png)
+![1.On load](img/screenshots/1_On_load.png)
 ![2.On click add button](img/screenshots/2_On_click_add_button.png)
 ![3.On hover folder input button](img/screenshots/3_On_hover_folder_input_button.png)
 ![4.On click folder input](img/screenshots/4_On_click_folder_input.png)
