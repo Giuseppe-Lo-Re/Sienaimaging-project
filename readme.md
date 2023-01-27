@@ -27,8 +27,7 @@ The project consists in the development of a web app that allows the user to cre
 Download repository and open index.html file.
 ***
 ### Logic used in the project
-
-I have decided to use plain Javascript. 
+ 
 On page load, the "-" button that removes components from the page is disabled. Additionally, a counter is set that will keep track of the components present on the page.
 
 -  Add button
