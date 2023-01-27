@@ -28,29 +28,30 @@ Download repository and open index.html file
 ***
 ### Logic used in the project
 
-I have decided to use plain Javascript. On page load, the "-" button that removes components from the page is disabled. Additionally, a counter is set that will keep track of the components present on the page.
+I have decided to use plain Javascript. 
+On page load, the "-" button that removes components from the page is disabled. Additionally, a counter is set that will keep track of the components present on the page.
 
-- ##### Add button
+##### Add button
 
 When the button that adds components to the page is clicked, the counter is incremented. Until it is equal to 10, it will call the AddComponent function, which is responsible for printing. Once the limit is reached, it will print a message in the header and disable the button itself (I set this limit for personal choice and aesthetic appeal).
 
-- ##### Remove button
+##### Remove button
 
 On click to the button that removes components from the page (enabled only after the first one is created) is clicked, the message disappears, the counter is decremented, and the removeComponent function is called, which is responsible for removing the component. If there are no components on the page, the button itself will be disabled.
 
-- ##### addComponent function
+##### addComponent function
 
 Create the component that will be the container for "insideComponent" (a choice made to have more control over the styles), which contains a button inside that allows the user to upload an image folder from their device. When the button is clicked, a window will open for selecting a directory of a folder, the only choice that is allowed. Once the folder is selected, the files inside are filtered for images and passed to the function renderImages, which is responsible for printing the images on the page.
 
-- ##### removeComponent function
+##### removeComponent function
 
 Select the last printed component and remove it, select all remaining components and pass them to the function fitComponents, which manages the proportions of the components on the page.
 
-- ##### fitComponent function
+##### fitComponent function
 
 Set the width of the components by dividing 100% of the width by the number of components present.
 
-- ##### renderImages function
+##### renderImages function
 
 Remove the upload button after it has been clicked; create a container for the slider and print it inside, then print the container inside the component. 
 Through an iteration equal to the number of images in the selected folder, create each individual image and print it inside the component.
