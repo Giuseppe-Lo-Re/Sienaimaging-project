@@ -10,7 +10,7 @@
 ## Table of Contents
 ***
 ### General Info
-Il progetto prevede lo sviluppo di una web app che permette all'utente di creare nella pagina diversi componenti(fino ad un limite massimo di 10 per scelta personale), all'interno di ognuno dei quali è possibile visualizzare delle immagini caricate dal proprio device.
+The project consists in the development of a web app that allows the user to create different components on the page, within each of which it is possible to view images uploaded from their own device.
 ***
 ***
 ### Screenshot
@@ -36,38 +36,35 @@ Il progetto prevede lo sviluppo di una web app che permette all'utente di creare
 ***
 ## Installation
 ***
-Scaricare la repository ed aprire il file index.html.
+Download repository and open index.html file
 ***
 ***
 ## Logic used in the project
 ***
-Ho deciso di utilizzare plain Javascript.
-Al caricamento della pagina il pulsante "-" che rimuove i componenti dalla pagina è disabilitato.Inoltre viene settato un counter che terrà conto dei componenti presenti nella pagina.
+I have decided to use plain Javascript. On page load, the "-" button that removes components from the page is disabled. Additionally, a counter is set that will keep track of the components present on the page.
 ***
 - Add button
 ***
-Al click sul button che aggiunge i componenti nella pagina il counter viene incrementato. Fin quando non sarà pari a 10, chiamerà la funzione AddCompoment, che si occupa della stampa. Al raggiungimento del limite, stamperà un messaggio nell'header, disabilitando il tasto stesso(Ho settato questo limite per scelta personale e resa estestica). 
+When the button that adds components to the page is clicked, the counter is incremented. Until it is equal to 10, it will call the AddComponent function, which is responsible for printing. Once the limit is reached, it will print a message in the header and disable the button itself (I set this limit for personal choice and aesthetic appeal).
 ***
 - Remove button
 ***
-Al click sul button che rimuove i componenti(abilitato solo dopo la creazione del primo) il messaggio scompare, viene descrementato il counter e chiamata la funzione removeComponent, che si occupa della rimozione. Se non sono presenti componenti nella pagina, il tasto stesso viene disabilitato.
+On click to the button that removes components from the page (enabled only after the first one is created) is clicked, the message disappears, the counter is decremented, and the removeComponent function is called, which is responsible for removing the component. If there are no components on the page, the button itself will be disabled.
 ***
 - addComponent function
 ***
-Crea il componente che sarà il contenitore di "insideComponent"(scelta fatta per gestire al meglio gli stili), che contiene al suo interno il button che permette all'utente di caricare la cartella delle immagini dal proprio device.
-Al click sul button si aprirà la finestra per la selezione della directory di una  cartella, una scelta permessa.
-Selezionata la cartella, i file presenti vengono filtrati per immagini e passati alla funzione renderImages, che si occupa di stampare le immagini in pagina.
+Create the component that will be the container for "insideComponent" (a choice made to have more control over the styles), which contains a button inside that allows the user to upload an image folder from their device. When the button is clicked, a window will open for selecting a directory of a folder, the only choice that is allowed. Once the folder is selected, the files inside are filtered for images and passed to the function renderImages, which is responsible for printing the images on the page.
 ***
 - removeComponent function
 ***
-Seleziona l'ultimo componente stampato e lo rimuove, seleziona tutti i restanti component e li passa alla funzione fitComponents, che gestische le proporzioni dei componenti in pagina.
+Select the last printed component and remove it, select all remaining components and pass them to the function fitComponents, which manages the proportions of the components on the page.
 ***
 - fitComponent function
 ***
-Attraverso un ciclo ForEach, imposta la larghezza dei componenti, dividendo il 100% della stessa per il numero di componenti presenti, ricavato dal counter.
+Set the width of the components by dividing 100% of the width by the number of components present.
 ***
 - renderImages function
 ***
-Rimuove il button di upload dopo il click sullo stesso; crea un container per lo slider e lo stampa al suo interno, successivamente stampa il container dentro il componente. Attraverso un'iterazione pari alla numero di immagini presenti nella cartella selezionata, crea ogni singola immagine e la stampa dentro il componente.
-Subito dopo vengono settati i parametri dello slider e, attraverso un'altra iterazione, viene resa visibile la prima immagine caricata e nascoste le altre.
-Infine, il focus della pagina viene assegnato allo slider del componente appena stampato, che potrà essere utilizzato attraverso l'uso delle frecce sinistra e destra della tastiera. Ad ogni variazione dello slider, l'immagine visibile viene nascosta e mostrare quello successiva(o precedente, in base alla posizione dello stesso).
+Remove the upload button after it has been clicked; create a container for the slider and print it inside, then print the container inside the component. 
+Through an iteration equal to the number of images in the selected folder, create each individual image and print it inside the component.
+Assign the focus of the page to the newly printed component slider, which can be used through the use of the left and right arrow keys. With every change of the slider, the visible image is hidden and the next one (or previous, depending on the position of the slider) is shown.
