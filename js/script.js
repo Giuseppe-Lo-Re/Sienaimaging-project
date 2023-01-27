@@ -13,10 +13,10 @@ document.querySelector(".addButton").addEventListener("click", function() {
     // Increase componentCount value by one
     componentCount++;
 
-    // If main contains 10 components ( I decided to set it as limit)
+    // If main contains 10 components(I decided to set it as limit)
     if(componentCount == 10) {
         
-        // Set add button disable
+        // Set add button to disable
         document.querySelector(".addButton").disabled = true;
 
         // Set limit message to visible
@@ -24,7 +24,7 @@ document.querySelector(".addButton").addEventListener("click", function() {
 
     } else {
 
-        // Set remove button disable
+        // Set remove button to disable
         document.querySelector(".removeButton").disabled = false;
     }
 
@@ -35,7 +35,7 @@ document.querySelector(".addButton").addEventListener("click", function() {
 
 // -------------------- "REMOVE" BUTTON LOGIC -------------------- //
 
-//  Assign a "click" event on addButton
+//  Set an event listener on addButton
 document.querySelector(".removeButton").addEventListener("click", function() {
     
     // Set limit message to invisible
@@ -82,10 +82,10 @@ function addComponent() {
     // Assign "btn", "btn-outline-warning" classes to selectBtn
     selectBtn.classList.add("btn", "btn-outline-warning");
     
-    // Create ad Event Listener on button
+    // Set an event listener on  selectBtn
     selectBtn.addEventListener("click", event => {
 
-        // Create a new input element to upload images folder and set attribute
+        // Create a new input element to upload images folder and set its attributes
         let folderInput = document.createElement("input");
         folderInput.type = "file";
         folderInput.setAttribute("webkitdirectory", "");
@@ -95,7 +95,7 @@ function addComponent() {
         // Assign the target variable to the element where the event is raised
         let target = event.target;
        
-        // Create an Event Listener after folder selection
+        // Create an event listener after folder selection
         folderInput.addEventListener("change", function(event) {
             
             // Set variable selectedFiles to the files object returned by the event
@@ -117,7 +117,7 @@ function addComponent() {
         // Select directory on click 
         folderInput.click();
 
-        // Remove folder input from DOM
+        // Remove folder input from body
         folderInput.remove();
     });
 	  
@@ -173,6 +173,7 @@ function removeComponent() {
     fitComponents(allComponents)
 }
 
+
 // -------------------- FITCOMPONENTS FUNCTION -------------------- //
 
 function fitComponents(allComponents) {
@@ -199,7 +200,7 @@ function renderImagesAndSlider(files, target, insideComponent) {
     // Assign "slider-container" class to sliderContainer
     sliderContainer.classList.add("slider-container");
     
-    // Create a slider element and set attribute
+    // Create a slider element and set its attributes
     let slider = document.createElement("input");
     slider.setAttribute("type", "range");
     slider.setAttribute("min", "0");
@@ -228,7 +229,7 @@ function renderImagesAndSlider(files, target, insideComponent) {
         // Create a new FileReader object to read files
         let reader = new FileReader();
 
-        // Set img source to the data uploaded files  when the file is uploaded
+        // Set source to the uploaded image on load
         reader.onload = function(e) {
             img.src = e.target.result;
         }
@@ -236,7 +237,7 @@ function renderImagesAndSlider(files, target, insideComponent) {
         // Read the data uploaded files
         reader.readAsDataURL(files[i]);
 
-        // Append created image to insideComponent
+        // Append image to insideComponent
         insideComponent.appendChild(img);
     }
 
@@ -254,7 +255,7 @@ function renderImagesAndSlider(files, target, insideComponent) {
     // For loop to iterate every image
     for (let i = 0; i < img.length ; i++) {
     
-        // If it's the first image selected
+        // If it's the first image uploaded
         if(i == 0) {
 
             // Add class "active" -> image visible
@@ -266,7 +267,7 @@ function renderImagesAndSlider(files, target, insideComponent) {
         }
     }
     
-    // Set "i" value -> The first time the first image is visible
+    // Set "i" value -> Set first image visible 
     let index = 0; 
 
     // Assign an event listener to slider
