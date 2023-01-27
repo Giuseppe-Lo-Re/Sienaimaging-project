@@ -2,7 +2,7 @@
 
 ### General Info
 The project consists in the development of a web app that allows the user to create different components on the page, within each of which it is possible to view images uploaded from their own device.
-***
+
 ### Screenshots
 ![1.On load](img/screenshots/1_On_load.png)
 ![2.On click add button](img/screenshots/2_On_click_add_button.png)
@@ -14,18 +14,18 @@ The project consists in the development of a web app that allows the user to cre
 ![8.On click remove button](img/screenshots/8_On_click_remove_button.png)
 ![9.Components adaptation](img/screenshots/9_Components_adaptation.png)
 ![10.Responsive design](img/screenshots/10_Responsive_design.png)
-***
+
 ### Technologies
 
 * HTML
 * CSS
 * Javascript
 * Bootstrap
-***
+
 ### Installation
 
 Download repository and open index.html file.
-***
+
 ### Logic used in the project
  
 On page load, the "-" button that removes components from the page is disabled. Additionally, a counter is set that will keep track of the components present on the page.
