@@ -5,7 +5,7 @@ The project consists in the development of a web app that allows the user to cre
 ***
 ### Screenshots
 ![1.On load](img/screenshots/1_%20On_load.png)
-![2.On click add button](img/screenshots/2_%20on_click_add_button.png)
+![2.On click add button](img/screenshots/2_On_click_add_button.png)
 ![3.On hover folder input button](img/screenshots/3_On_hover_folder_input_button.png)
 ![4.On click folder input](img/screenshots/4_On_click_folder_input.png)
 ![5.Images loaded on single component](img/screenshots/5_Images_loaded_on_single_component.png)
@@ -13,7 +13,7 @@ The project consists in the development of a web app that allows the user to cre
 ![7.Limit max components](img/screenshots/7_limit_max_components.png)
 ![8.On click remove button](img/screenshots/8_On_click_remove_button.png)
 ![9.Components adaptation](img/screenshots/9_Components_adaptation.png)
-![10.Responsive design](img/screenshots/10_Responsive_design)
+![10.Responsive design](img/screenshots/10_Responsive_design.png)
 ***
 ### Technologies
 
