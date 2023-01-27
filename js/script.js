@@ -112,6 +112,9 @@ function addComponent() {
 
         // Select directory on click 
         folderInput.click();
+
+        // Remove folder input
+        folderInput.remove();
     });
 	  
 	  
