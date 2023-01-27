@@ -32,34 +32,56 @@ header img {
     margin-top: 0.5rem;
 }
 
+.limit-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.limit-message p {
+    padding-top: 2rem;
+    color: red;
+    text-align: center;
+}
+
 .btn-container {
-    margin-left: 1em;
+    padding-left: 1em;
 }
 
 .btn {
     max-width: 100%;
     max-height: 100%;
+    /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5)
+}
 
+.btn:hover {
+    transform: scale(1.3);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+}
+
+.addButton {
+    margin-inline: 0.5rem;
 }
 
 /* MAIN */
 main {
-    background-color: #00337C;
-    background-image: linear-gradient(
-  45deg,
-  hsl(215deg 100% 24%) 0%,
-  hsl(246deg 42% 36%) 11%,
-  hsl(271deg 43% 36%) 22%,
-  hsl(293deg 42% 36%) 33%,
-  hsl(312deg 46% 39%) 44%,
-  hsl(325deg 50% 44%) 56%,
-  hsl(334deg 50% 49%) 67%,
-  hsl(343deg 56% 53%) 78%,
-  hsl(353deg 63% 58%) 89%,
-  hsl(3deg 69% 62%) 100%
-);
-    height: 90vh;
-    padding: 0.6rem;
+    min-height: 95vh;
+    padding: 0.6rem;    
+    background-image: linear-gradient(45deg,
+                    hsl(215deg 100% 24%) 0%,
+                    hsl(246deg 42% 36%) 11%,
+                    hsl(271deg 43% 36%) 22%,
+                    hsl(293deg 42% 36%) 33%,
+                    hsl(312deg 46% 39%) 44%,
+                    hsl(325deg 50% 44%) 56%,
+                    hsl(334deg 50% 49%) 67%,
+                    hsl(343deg 56% 53%) 78%,
+                    hsl(353deg 63% 58%) 89%,
+                    hsl(3deg 69% 62%) 100%
+                    );   
 }
 
 .component {

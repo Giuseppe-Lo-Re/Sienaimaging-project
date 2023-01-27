@@ -18,6 +18,10 @@ document.querySelector(".addButton").addEventListener("click", function() {
         
         // Set add button disable
         document.querySelector(".addButton").disabled = true;
+
+        // Set limit message to visible
+        document.querySelector(".limit-message").style.display = "block";
+
     } else {
         // Set remove button disable
         document.querySelector(".removeButton").disabled = false;
@@ -32,6 +36,9 @@ document.querySelector(".addButton").addEventListener("click", function() {
 
 //  Assign a "click" event on addButton
 document.querySelector(".removeButton").addEventListener("click", function() {
+    
+    // Set limit message to invisible
+    document.querySelector(".limit-message").style.display = "none";
     
     // Decrease componentCount value by one
     componentCount--;
