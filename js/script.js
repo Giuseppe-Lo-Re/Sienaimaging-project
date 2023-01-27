@@ -23,6 +23,7 @@ document.querySelector(".addButton").addEventListener("click", function() {
         document.querySelector(".limit-message").style.display = "block";
 
     } else {
+
         // Set remove button disable
         document.querySelector(".removeButton").disabled = false;
     }
@@ -63,41 +64,44 @@ document.querySelector(".removeButton").addEventListener("click", function() {
 
 function addComponent() {
 
-   	// Create a new div element
+   	// Create a new div element for component
     let Component = document.createElement("div");
 	
-	// Create a new div element
+	// Create a new div element for inside component
     let insideComponent = document.createElement("div");
 	
-	// Create a button to open the modal
+	// Create a button to open file directory to select image folder
     let selectBtn = document.createElement("button");
 	
    
     // ---------- FOLDER INPUT BUTTON LOGIC---------- //
 
+    // Set HTML content on button
     selectBtn.innerHTML = `📂`;
+
+    // Assign "btn", "btn-outline-warning" classes to selectBtn
     selectBtn.classList.add("btn", "btn-outline-warning");
     
     // Create ad Event Listener on button
     selectBtn.addEventListener("click", event => {
 
-        // Create a new input element to upload images folder
+        // Create a new input element to upload images folder and set attribute
         let folderInput = document.createElement("input");
         folderInput.type = "file";
         folderInput.setAttribute("webkitdirectory", "");
         folderInput.setAttribute("mozdirectory", "");
 		folderInput.setAttribute("accept", ".jpg, .jpeg, .png");
 				
-        // Assign the target variable to the element where the event was raised
+        // Assign the target variable to the element where the event is raised
         let target = event.target;
        
-        // Create ad Event Listener after folder selection
+        // Create an Event Listener after folder selection
         folderInput.addEventListener("change", function(event) {
             
-            // Set variable selectedFiles to the files object returned by the event(folder selected files) 
+            // Set variable selectedFiles to the files object returned by the event
             let selectedFiles = event.target.files;
 			
-			//Filters files with type "image"
+			// Filter files by type "image"
 			selectedFiles = [...selectedFiles].filter( s => s.type.includes("image") )
             
             // Call renderImages function
@@ -113,32 +117,32 @@ function addComponent() {
         // Select directory on click 
         folderInput.click();
 
-        // Remove folder input
+        // Remove folder input from DOM
         folderInput.remove();
     });
 	  
 	  
 	// ---------- INSIDE COMPONENT LOGIC---------- //  
 	
-	// Assign "inside-component" class to new div element
+	// Assign "inside-component" class to new insideComponent
     insideComponent.classList.add("inside-component");  
 	
 	// Set Id on insideComponent
     insideComponent.setAttribute("id", `${componentCount}`)
 
-    // Append the button to the inside component
+    // Append button to insideComponent
     insideComponent.appendChild(selectBtn);
 	
 
 	// ---------- COMPONENT LOGIC ---------- //
 
-    // Assign "component" class to new component
+    // Assign "component" class to new Component
     Component.classList.add("component");
    
-    // Append new div element "insideComponent" inside the new component
+    // Append insideComponent to Component
     Component.appendChild(insideComponent);
 
-    // Select element with "main" class and add new component
+    // Select div with "#main" ID and add Component
     document.querySelector("#main").appendChild(Component); 
 
 
@@ -153,9 +157,10 @@ function addComponent() {
 
 
 // -------------------- REMOVE COMPONENT FUNCTION -------------------- //
+
 function removeComponent() {
 
-    // Select last component printed inside element with "main" class
+    // Select last component printed in main
     let lastComponent = document.querySelector('#main').lastChild;
 
     // Remove last component
@@ -172,12 +177,12 @@ function removeComponent() {
 
 function fitComponents(allComponents) {
 
-    // For each printed components set components width on base those presents
+    // For each printed components set component width ratio
     allComponents.forEach(function(component) {
 
-        // Create a style inline width string calculating  100% width / number components + "%"   
+        // Create a style inline width string  
         component.style.width = (100 / componentCount) + "%";
-});
+    });
 }
 
 
@@ -185,16 +190,16 @@ function fitComponents(allComponents) {
 
 function renderImages(files, target, insideComponent) {
     
-    // Remove button after click upload images
+    // Remove button after click 
     target.parentNode.removeChild(target);
     
-    // Create a new div element
-    const slidercontainer = document.createElement("div");
+    // Create a new div element for sliderContainer
+    const sliderContainer = document.createElement("div");
 
-    // Add "slider-container" class
-    slidercontainer.classList.add("slider-container");
+    // Assign "slider-container" class to sliderContainer
+    sliderContainer.classList.add("slider-container");
     
-    // Crea un elemento input con un tipo range, min, max e value
+    // Create a slider element and set attribute
     let slider = document.createElement("input");
     slider.setAttribute("type", "range");
     slider.setAttribute("min", "0");
@@ -202,42 +207,43 @@ function renderImages(files, target, insideComponent) {
     slider.setAttribute("value", "0");
     slider.setAttribute("class", "slider");
 
-    // Add slider slider container
-    slidercontainer.appendChild(slider);
+    // Append slider to sliderContainer
+    sliderContainer.appendChild(slider);
 
-    // Add slider container inside component
-    insideComponent.appendChild(slidercontainer);
+    // Append sliderContainer to insideComponent
+    insideComponent.appendChild(sliderContainer);
 
-    // For loop to append images files in the component
+    // For loop to append images files to insideComponent
     for (let i = 0; i < files.length ; i++) {
 
-        // // Create img element
+        // Create a new img element
         let img = document.createElement('img');
 
-		// Set an univoque ID for the img, composed from inside component id iteration + image id iteration
+		// Set an univoque ID for the img, composed from: insideComponent id iteration + image id iteration
 		img.setAttribute("id", insideComponent.getAttribute("id") + '_' + i); 
 
-        // Add "img-fluid" class
+        // Add "img-fluid" responsive class to img
         img.classList.add("img-fluid");
 
-        // Define img src
-        // when the file is uploaded, the img.src is set to the data of the uploaded file      
+        // Create a new FileReader object to read files
         let reader = new FileReader();
+
+        // Set img source to the data uploaded files  when the file is uploaded
         reader.onload = function(e) {
             img.src = e.target.result;
         }
         
-        // Read the data of the uploaded file
+        // Read the data uploaded files
         reader.readAsDataURL(files[i]);
 
-        // Append created image to element parent insideComponent
+        // Append created image to insideComponent
         insideComponent.appendChild(img);
     }
 
     // Select slider input
     slider = insideComponent.querySelector("input");
 
-    // Select images
+    // Select all images
     const img = insideComponent.querySelectorAll("img");
 
     // Set slider parameters
@@ -253,22 +259,20 @@ function renderImages(files, target, insideComponent) {
 
             // Add class "active" -> image visible
             const element = img[i].classList.add("active");  
-        }
-        else {
+        } else {
 
             // Add class "active" -> image invisible
             const element = img[i].classList.add("disable");  
         }
     }
     
-    // Set "i" value
-    let index = 0; //la prima volta img[0] è attiva
+    // Set "i" value -> The first time the first image is visible
+    let index = 0; 
 
     // Assign an event listener to slider
     slider.addEventListener("change", function(event){
 
-        // Remove class "active" and add class "disable" to image triggered the event 
-        // -> previous image invisible
+        // Remove class "active" and add class "disable" to image triggered the event -> previous image invisible
         img[index].classList.remove("active");
         img[index].classList.add("disable");
   
@@ -276,12 +280,11 @@ function renderImages(files, target, insideComponent) {
         // Assign "i" variable when the event is triggered
         index = event.target.value;
 
-        // Remove class "disable" and add class "active" to image triggered the event 
-        // -> next image visible
+        // Remove class "disable" and add class "active" to image triggered the event -> next image visible
         img[index].classList.remove("disable");
         img[index].classList.add("active");
     });
 	
-    // Set focus on slider to use via keyboard arrows
+    // Set focus on slider to use it via keyboard arrows
 	slider.focus(); 
 }
