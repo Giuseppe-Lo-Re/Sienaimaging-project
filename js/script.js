@@ -104,8 +104,8 @@ function addComponent() {
 			// Filter files by type "image"
 			selectedFiles = [...selectedFiles].filter( s => s.type.includes("image") )
             
-            // Call renderImages function
-            renderImages(selectedFiles, target, insideComponent);
+            // Call renderImagesAndSlider function
+            renderImagesAndSlider(selectedFiles, target, insideComponent);
         });
 
         // Hide folder input
@@ -186,9 +186,9 @@ function fitComponents(allComponents) {
 }
 
 
-// -------------------- RENDERIMAGES FUNCTION -------------------- //
+// -------------------- RENDERIMAGESANDSLIDER FUNCTION -------------------- //
 
-function renderImages(files, target, insideComponent) {
+function renderImagesAndSlider(files, target, insideComponent) {
     
     // Remove button after click 
     target.parentNode.removeChild(target);
