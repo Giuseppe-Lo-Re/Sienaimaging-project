@@ -129,7 +129,7 @@ function addComponent() {
     Component.appendChild(insideComponent);
 
     // Select element with "main" class and add new component
-    document.querySelector(".main").appendChild(Component); 
+    document.querySelector("#main").appendChild(Component); 
 
 
 	// ---------- GRAPHIC SETTING ---------- //
@@ -146,7 +146,7 @@ function addComponent() {
 function removeComponent() {
 
     // Select last component printed inside element with "main" class
-    let lastComponent = document.querySelector('.main').lastChild;
+    let lastComponent = document.querySelector('#main').lastChild;
 
     // Remove last component
     lastComponent.remove();
