@@ -1,4 +1,4 @@
-## Frontend Developer Position Second session TEST
+## Siena Imaging Project
 
 ### General Info
 The project consists in the development of a web app that allows the user to create different components on the page, within each of which it is possible to view images uploaded from their own device.
